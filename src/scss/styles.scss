@@ -1,0 +1,7 @@
+// Custom SCSS files
+@use 'components/header';
+@use 'components/main';
+@use 'components/footer';
+
+//Main Bootstrap file // Requiered for Bootstrap to work
+@import "../../node_modules/bootstrap/scss/bootstrap";

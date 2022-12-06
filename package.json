@@ -1,0 +1,19 @@
+{
+  "name": "semester-project-2022",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch": "sass src/scss:build/css --watch & live-server",
+    "build": "sass src/scss:build/css"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.2.2"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "sass": "^1.56.1"
+  }
+}

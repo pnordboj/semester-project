@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="build/css/styles.css" />
+    <title>Semester Project 2022</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-dark bg-dark mb-3">
+        <div class="container-fluid gap-5 justify-content-center">
+          <a class="navbar-brand" href="#">Bidder.io</a>
+          <ul class="navbar-nav d-flex flex-row gap-4">
+            <li class="nav-item">
+              <a
+                id="nav-auction-btn"
+                class="nav-link active"
+                aria-current="page"
+                href="#"
+                >Auctions</a
+              >
+            </li>
+            <li class="nav-item">
+              <a id="nav-about-btn" class="nav-link" href="#">About</a>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <input
+              id="searchbar"
+              class="form-control"
+              type="search"
+              placeholder="Search for auctions"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-success" type="submit">
+              Search
+            </button>
+          </form>
+          <ul class="navbar-nav d-flex flex-row gap-4">
+            <li id="nav-login" class="nav-item">
+              <a id="nav-login-btn" class="nav-link" href="#">Login</a>
+            </li>
+            <li id="nav-register" class="nav-item">
+              <a class="nav-link" id="nav-register-btn" href="#"
+                >Create Account</a
+              >
+            </li>
+          </ul>
+          <ul>
+            <li id="nav-credits" class="nav-item">
+              <label id="nav-credits" class="navbar-brand rounded border-1"
+                >Credits</label
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="welcome-section container-fluid" id="welcome-section">
+        <div class="card welcome-container">
+          <div class="card-body">
+            <h1 class="card-title">Welcome to Bidder.io</h1>
+            <p class="card-text">
+              Bidder.io is a platform for buying and selling items.
+            </p>
+            <p class="card-text">
+              You can create an account and start bidding on items you like.
+            </p>
+            <p class="card-text">
+              You can also create your own auctions and sell your items.
+            </p>
+            <p class="card-text">Happy bidding!</p>
+          </div>
+          <div class="card-footer welcome-footer">
+            <a id="welcome-create-button" class="btn btn-primary"
+              >Create Account</a
+            >
+            <a id="welcome-login-button" class="btn btn-primary">Login</a>
+            <a id="welcome-guest-button" class="btn btn-primary"
+              >Continue as guest</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section id="authorize-section">
+        <div class="card-group" id="authorize-container">
+          <div class="card" id="login-container">
+            <form id="login">
+              <div class="card-body">
+                <h2 class="card-title">Please Login!</h2>
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="username@stud.noroff.no"
+                  required
+                />
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Enter your password!"
+                  required
+                />
+              </div>
+              <div class="card-footer">
+                <button id="login-btn" class="btn btn-primary">Login</button>
+              </div>
+            </form>
+          </div>
+          <div class="card" id="register-container">
+            <form id="register">
+              <div class="card-body">
+                <h2 class="card-title">Create your account</h2>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter your name!"
+                  required
+                />
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="username@stud.noroff.no"
+                  required
+                />
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Add image URL for profile picture"
+                  required
+                />
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Enter your password!"
+                  required
+                />
+              </div>
+              <div class="card-footer">
+                <button id="register-btn" class="btn btn-primary">
+                  Register
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section id="auction-section">
+        <h1 class="text-center">Auctions</h1>
+        <div class="auction-buttons">
+          <button id="create-listing-btn" type="button" class="btn btn-primary">
+            Create Auction
+          </button>
+          <button type="button" class="btn btn-primary">My Auctions</button>
+          <button
+            href="profile/index.html"
+            type="button"
+            class="btn btn-primary"
+          >
+            My Profile
+          </button>
+        </div>
+        <div class="card" id="auction-container">
+          <div class="card-group" id="auctions"></div>
+        </div>
+      </section>
+
+      <section id="profile-section">
+        <div class="card" id="profile-container"></div>
+      </section>
+
+      <section id="create-section">
+        <div class="card" id="create-container">
+          <form id="create">
+            <div class="card-body">
+              <h2 class="card-title">Create Auction</h2>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Title your auction!"
+                required
+              />
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Desribe your auction!"
+                required
+              />
+              <input
+                type="date"
+                class="form-control"
+                placeholder="When does your auction end?"
+                required
+              />
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Add image URL for auction picture"
+                required
+              />
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Add tags for your auction"
+                required
+              />
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section>
+        <div class="alert-container"></div>
+      </section>
+    </main>
+
+    <footer></footer>
+
+    <script src="src/javascript/main.js" type="module"></script>
+  </body>
+</html>

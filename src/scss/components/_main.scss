@@ -1,0 +1,87 @@
+
+/* Section: Welcome Tab */
+
+.welcome-section {
+  margin-top: 10%;
+}
+
+.welcome-container {
+  width: 35%;
+  margin: 0 auto;
+}
+
+.welcome-footer {
+  display: flex;
+  flex-direction: row;
+  gap: 10%;
+}
+
+/* Section: Authentication */
+
+/* Authorize Container */
+
+#authorize-container {
+  display: none;
+}
+
+/* Login */
+
+#login-container {
+  display: none;
+  width: 30%;
+  margin: 10% auto;
+}
+
+/* Register */
+
+#register-container {
+  display: none;
+  width: 30%;
+  margin: 10% auto;
+}
+
+/* Section: Auctions */
+
+#auction-section {
+  display: none;
+}
+
+.auction-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 3% auto;
+  margin-bottom: 3%;
+  gap: 5%;
+}
+
+.auction-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  margin: 5% auto;
+}
+
+.auction-card {
+  width: 30%;
+  margin: 0 auto;
+  margin-bottom: 10%;
+}
+
+.auction-card img {
+  width: 100%;
+}
+
+/* Section: Profile */
+
+#profile-section {
+  display: none;
+}
+
+/* Section: Create Listning */
+
+#create-section {
+  display: none;
+} 
