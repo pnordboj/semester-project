@@ -47,6 +47,9 @@
                 >Create Account</a
               >
             </li>
+            <li id="nav-logout" class="nav-item">
+              <a class="nav-link" id="nav-logout-btn" href="#">Logout</a>
+            </li>
           </ul>
           <ul>
             <li id="nav-credits" class="nav-item">
@@ -60,6 +63,11 @@
     </header>
 
     <main>
+      <section id="username-section">
+        <label class="btn btn-outline-secondary" id="logged-as"
+          >Not logged inn</label
+        >
+      </section>
       <section class="welcome-section container-fluid" id="welcome-section">
         <div class="card welcome-container">
           <div class="card-body">
@@ -153,7 +161,7 @@
       <section id="auction-section">
         <h1 class="text-center">Auctions</h1>
         <div class="auction-buttons">
-          <button id="create-listing-btn" type="button" class="btn btn-primary">
+          <button id="open-listing-btn" type="button" class="btn btn-primary">
             Create Auction
           </button>
           <button type="button" class="btn btn-primary">My Auctions</button>
@@ -176,9 +184,10 @@
 
       <section id="create-section">
         <div class="card" id="create-container">
-          <form id="create">
-            <div class="card-body">
+          <div id="create-form-container">
+            <form class="card-body" id="create-listing">
               <h2 class="card-title">Create Auction</h2>
+
               <input
                 type="text"
                 class="form-control"
@@ -188,34 +197,47 @@
               <input
                 type="text"
                 class="form-control"
-                placeholder="Desribe your auction!"
+                placeholder="Describe your auction!"
                 required
               />
               <input
-                type="date"
+                type="datetime-local"
                 class="form-control"
+                name="date"
                 placeholder="When does your auction end?"
                 required
               />
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Add image URL for auction picture"
-                required
-              />
+
               <input
                 type="text"
                 class="form-control"
                 placeholder="Add tags for your auction"
                 required
               />
-            </div>
-          </form>
+
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Add image URL for auction picture"
+                required
+              />
+
+              <div class="card-footer">
+                <button
+                  id="create-listing-btn"
+                  type="submit"
+                  class="btn btn-primary"
+                >
+                  Create Auction
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </section>
 
       <section>
-        <div class="alert-container"></div>
+        <div id="alert-container"></div>
       </section>
     </main>
 
