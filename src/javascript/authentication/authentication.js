@@ -4,6 +4,10 @@ const headers = {
     'Accept': 'application/json',
 };
 const html = document.getElementById('alert-container');
+const creditsHTML = document.getElementById('nav-credits');
+const logoutBtn = document.getElementById('nav-logout-btn');
+
+const userImage = [];
 
 export const login = () => {
 
@@ -24,10 +28,14 @@ export const login = () => {
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
-                if (data.access_token) {
-                    localStorage.setItem('access-token', data.token);
-                    localStorage.setItem('user', JSON.stringify(data.user));
-                    setTimeout(function () { window.location.href = "/"; }, 500);
+                if (data.accessToken) {
+                    localStorage.setItem('access-token', data.accessToken);
+                    localStorage.setItem('user', JSON.stringify(data.name));
+                    localStorage.setItem('userimage', data.avatar);
+                    localStorage.setItem('credits', data.credits);
+                    creditsHTML.innerHTML = `<label id="nav-credits" class="navbar-brand rounded border-1"
+                    >Credits: ${data.credits}</label>`
+                    setTimeout(function () { window.location.href = "/"; }, 2000);
                 } else {
                     html.innerHTML = `<div class="alert alert-danger" role="alert">${data.message}</div>`;
                 }
@@ -64,9 +72,10 @@ export const register = () => {
                 .then((response) => response.json())
                 .then((data) => {
                     console.log(data);
-                    if (data.access_token) {
-                        localStorage.setItem('access-token', data.token);
+                    if (data.accessToken) {
+                        localStorage.setItem('access-token', data.accessToken);
                         localStorage.setItem('user', JSON.stringify(data.user));
+                        localStorage.setItem('userimage', data.avatar);
                         setTimeout(function () { html.innerHTML = `<div class="alert alert-success" role="alert">User successfully created! Please login!</div>` }, 2000);
                     } else {
                         html.innerHTML = `<div class="alert alert-danger" role="alert">${data.message}</div>`;
@@ -91,18 +100,26 @@ export function autoLogin() {
     if (isLoggedIn() === true) {
         const navLogin = document.getElementById('nav-login');
         const navRegister = document.getElementById('nav-register');
-        navLogin.innerHTML = `<a class="nav-link" onclick="profilePage()">Welcome: ${localStorage.getItem('username')}</a>`;
-        navRegister.innerHTML = `<a class="nav-link" onclick="logout()">Logout</a>`;
+        const navLogout = document.getElementById('nav-logout');
+        navLogin.innerHTML = `<a class="nav-link" onclick="profilePage()">Welcome: ${localStorage.getItem('user')}</a>`;
+        navRegister.style.display = 'none';
+        navLogout.style.display = 'block';
+        creditsHTML.innerHTML = `<label id="nav-credits" class="navbar-brand rounded border-1"
+        >Credits: ${localStorage.getItem('credits')}</label>`
     }
 }
 
-export function logout() {
+logoutBtn.onclick = function logout() {
     const navLogin = document.getElementById('nav-login');
     const navRegister = document.getElementById('nav-register');
+    const navLogout = document.getElementById('nav-logout');
     localStorage.removeItem('access-token');
-    localStorage.removeItem('user');
+    localStorage.removeItem('username');
+    localStorage.removeItem('userimage');
+    localStorage.removeItem('credits');
     navLogin.innerHTML = `<a id="nav-login-btn" class="nav-link" href="#">Login</a>`;
-    navRegister.innerHTML = `<a class="nav-link" id="nav-register-btn" href="#">Create Account</a>`;
+    navRegister.style.display = 'block';
+    navLogout.style.display = 'none';
     window.location.href = "/";
 }
 

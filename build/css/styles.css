@@ -1,4 +1,15 @@
 @charset "UTF-8";
+/* Nav Buttons */
+#nav-credits {
+  list-style: none;
+  font-size: 16px;
+  color: white;
+}
+
+#nav-logout {
+  display: none;
+}
+
 /* Section: Welcome Tab */
 .welcome-section {
   margin-top: 10%;
@@ -68,6 +79,45 @@
   width: 100%;
 }
 
+.auction-img {
+  cursor: pointer;
+}
+
+/* Single Listing */
+#listing-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5%;
+}
+
+#seller-list-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#seller-container {
+  width: 100%;
+  margin-top: 5%;
+}
+
+#seller-image {
+  width: 50%;
+}
+
+#listing-card {
+  width: 100%;
+}
+
+#image-container {
+  width: 30%;
+}
+
+#listing-img {
+  width: 100%;
+}
+
 /* Section: Profile */
 #profile-section {
   display: none;
@@ -76,6 +126,15 @@
 /* Section: Create Listning */
 #create-section {
   display: none;
+}
+
+#create-container {
+  width: 50%;
+  margin: 2% auto;
+}
+
+.form-control {
+  margin-bottom: 5%;
 }
 
 /*!
