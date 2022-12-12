@@ -2,7 +2,7 @@ const url = 'https://api.noroff.dev/api/v1';
 
 const html = document.getElementById('alert-container');
 
-async function auctionListings() {
+export async function auctionListings() {
     const response = await fetch(url + '/auction/listings');
     const data = await response.json();
     console.log(data);
@@ -75,8 +75,6 @@ function noRefresh(event) {
 
 const form = document.getElementById('create-listing');
 form.addEventListener('submit', noRefresh);
-
-auctionListings();
 
 openListBtn.onclick = () => {
     openListing();

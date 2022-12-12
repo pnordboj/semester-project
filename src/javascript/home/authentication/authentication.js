@@ -30,7 +30,7 @@ export const login = () => {
                 console.log(data);
                 if (data.accessToken) {
                     localStorage.setItem('access-token', data.accessToken);
-                    localStorage.setItem('user', JSON.stringify(data.name));
+                    localStorage.setItem('user', JSON.stringify(data.name).replace(/"/g, ''));
                     localStorage.setItem('userimage', data.avatar);
                     localStorage.setItem('credits', data.credits);
                     creditsHTML.innerHTML = `<label id="nav-credits" class="navbar-brand rounded border-1"
@@ -73,8 +73,11 @@ export const register = () => {
                 .then((data) => {
                     console.log(data);
                     if (data.accessToken) {
+
                         localStorage.setItem('access-token', data.accessToken);
-                        localStorage.setItem('user', JSON.stringify(data.user));
+                        // I had to inclue the replace method to remove the quotes from the name
+                        // otherwise it would not work with the profile page
+                        localStorage.setItem('user', JSON.stringify(data.name).replace(/"/g, ''));
                         localStorage.setItem('userimage', data.avatar);
                         setTimeout(function () { html.innerHTML = `<div class="alert alert-success" role="alert">User successfully created! Please login!</div>` }, 2000);
                     } else {
@@ -101,11 +104,19 @@ export function autoLogin() {
         const navLogin = document.getElementById('nav-login');
         const navRegister = document.getElementById('nav-register');
         const navLogout = document.getElementById('nav-logout');
-        navLogin.innerHTML = `<a class="nav-link" onclick="profilePage()">Welcome: ${localStorage.getItem('user')}</a>`;
+        const auctionButtons = document.getElementsByClassName('auction-buttons');
+        navLogin.innerHTML = `<a href="/profile/?user=${localStorage.getItem('user')}" class="nav-link" onclick="profilePage()">Welcome: ${localStorage.getItem('user')}</a>`;
         navRegister.style.display = 'none';
         navLogout.style.display = 'block';
         creditsHTML.innerHTML = `<label id="nav-credits" class="navbar-brand rounded border-1"
         >Credits: ${localStorage.getItem('credits')}</label>`
+        auctionButtons.innerHTML = `
+        <button id="open-listing-btn" type="button" class="btn btn-primary">
+            Create Auction
+        </button>
+        <button type="button" class="btn btn-primary">My Auctions</button>
+        <a href="/profile/?user=${localStorage.getItem('user')}" class="btn btn-primary">My Profile</a>
+        `;
     }
 }
 
@@ -114,7 +125,7 @@ logoutBtn.onclick = function logout() {
     const navRegister = document.getElementById('nav-register');
     const navLogout = document.getElementById('nav-logout');
     localStorage.removeItem('access-token');
-    localStorage.removeItem('username');
+    localStorage.removeItem('user');
     localStorage.removeItem('userimage');
     localStorage.removeItem('credits');
     navLogin.innerHTML = `<a id="nav-login-btn" class="nav-link" href="#">Login</a>`;

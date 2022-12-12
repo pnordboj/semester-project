@@ -1,3 +1,2 @@
-export * from './avatar.js';
-export * from './credits.js';
+export * from './login.js';
 export * from './user.js';

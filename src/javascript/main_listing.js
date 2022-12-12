@@ -1,5 +1,5 @@
-import './auction/viewListing.js';
-import { getListing } from './auction/viewListing.js';
+import './listing/auctions/viewListing.js';
+import { getListing } from './listing/auctions/viewListing.js';
 
 // Run on Load Functions
 
