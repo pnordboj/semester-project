@@ -4,8 +4,44 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="build/css/styles.css" />
+    <link rel="stylesheet" href="../build/css/styles.css" />
     <title>Semester Project 2022</title>
   </head>
-  <body></body>
+  <body>
+    <header>
+      <nav class="navbar navbar-dark bg-dark mb-3">
+        <div class="container-fluid gap-5 justify-content-center">
+          <a class="navbar-brand" href="/">Bidder.io</a>
+          <ul class="navbar-nav d-flex flex-row gap-4">
+            <li class="nav-item">
+              <a
+                id="nav-auction-btn"
+                class="nav-link"
+                aria-current="page"
+                href="#"
+                >Auctions</a
+              >
+            </li>
+            <li class="nav-item">
+              <a id="nav-about-btn" class="nav-link" href="#">About</a>
+            </li>
+            <li id="nav-logout" class="nav-item">
+              <a class="nav-link" id="nav-logout-btn" href="#">Logout</a>
+            </li>
+            <li id="nav-credits" class="nav-item">
+              <a id="nav-credits" class="nav-item">Credits</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <section id="user-section">
+        <div id="alert-container"></div>
+        <div id="user-container"></div>
+      </section>
+    </main>
+    <footer></footer>
+    <script src="../src/javascript/main_profile.js" type="module"></script>
+  </body>
 </html>

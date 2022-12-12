@@ -16,7 +16,7 @@
             <li class="nav-item">
               <a
                 id="nav-auction-btn"
-                class="nav-link active"
+                class="nav-link"
                 aria-current="page"
                 href="/"
                 >Auctions</a
@@ -46,21 +46,60 @@
       </nav>
     </header>
     <main>
-      <section id="username-section">
+      <section class="mt-4" id="username-section">
         <label class="btn btn-outline-secondary" id="logged-as"
           >Not logged inn</label
         >
       </section>
-      <section id="listing-section">
+      <section class="mt-4" id="listing-section">
         <div id="seller-list-container">
-          <div id="listing-container"></div>
-          <div id="seller-container"></div>
+          <div id="listing-container">
+            <div id="listing-card">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <h5 class="card-title">${data.title}</h5>
+                  <p class="card-text">${data.description}</p>
+                </div>
+                <div class="card-footer">
+                  <p class="card-text">Bids: ${data._count.bids}</p>
+                  <p class="card-text">Ends: ${data.endsAt}</p>
+                  <div class="btn-group">
+                    <form id="bid-form">
+                      <input
+                        type="number"
+                        name="bid"
+                        id="bid"
+                        placeholder="Bid Amount"
+                      />
+                      <button id="bid-btn" class="btn btn-primary">Bid</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="seller-container">
+            <div class="card mb-4">
+              <div class="card-body">
+                <img
+                  id="seller-image"
+                  src="${data.seller.avatar}"
+                  class="card-img-top"
+                  alt="${data.seller.name} (No profile picture)"
+                />
+                <p class="card-title">${data.seller.name}</p>
+              </div>
+              <div class="card-footer">
+                <p class="card-text">Email: ${data.seller.email}</p>
+              </div>
+            </div>
+          </div>
         </div>
         <div id="image-container"></div>
         <div id="alert-container"></div>
       </section>
     </main>
     <footer></footer>
-    <script src="../src/javascript/listPage.js" type="module"></script>
+    <script src="../src/javascript/main_listing.js" type="module"></script>
   </body>
 </html>

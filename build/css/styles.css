@@ -1,11 +1,5 @@
 @charset "UTF-8";
 /* Nav Buttons */
-#nav-credits {
-  list-style: none;
-  font-size: 16px;
-  color: white;
-}
-
 #nav-logout {
   display: none;
 }
@@ -135,6 +129,44 @@
 
 .form-control {
   margin-bottom: 5%;
+}
+
+/* Listing page */
+/* Profile Page */
+#user-container {
+  width: 80%;
+  margin: 5% auto;
+}
+
+#user-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 3%;
+  width: 90%;
+}
+
+#card-image {
+  width: 40%;
+}
+
+#user-title-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5%;
+}
+
+#user-email-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5%;
+}
+
+#username-label, #user-email-label {
+  font-size: x-small;
 }
 
 /*!
