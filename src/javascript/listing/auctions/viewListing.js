@@ -17,28 +17,11 @@ export async function getListing() {
     console.log(data);
     const listing = document.getElementById('listing-container');
     const seller = document.getElementById('seller-container');
-    const image = document.getElementById('image-container');
     listing.innerHTML = '';
-    seller.innerHTML = '';
-    image.innerHTML = '';
-    image.innerHTML += `
-        <img src="${data.media[0]}" id="listing-img" class="card-img-top" alt="${data.title}">
-    `;
-    seller.innerHTML += `
-        <div class="card mb-4">
-            <div class="card-body">
-                <p style="font-size="16px"">Seller</p>
-                <img id="seller-image" src="${data.seller.avatar}" class="card-img-top" alt="${data.seller.name} (No profile picture)">
-                <p class="card-title">${data.seller.name}</p>
-            </div>
-            <div class="card-footer">
-                <p class="card-text">Email: ${data.seller.email}</p>
-            </div>
-        </div>
-    `;
     listing.innerHTML += `
     <div id="listing-card">
             <div class="card mb-4">
+            <img src="${data.media[0]}" id="listing-img" class="card-img-top" alt="${data.title}">
                 <div class="card-body">
                     <h5 class="card-title">${data.title}</h5>
                     <p class="card-text">${data.description}</p>
@@ -56,6 +39,20 @@ export async function getListing() {
             </div>
         </div>
     `;
+    seller.innerHTML = '';
+    seller.innerHTML += `
+        <div class="card mb-4">
+            <div class="card-body">
+                <p class="text-muted">Seller</p>
+                <h3 class="card-title">${data.seller.name}</h3>
+                <img id="seller-image" src="${data.seller.avatar}" class="card-img-top" alt="${data.seller.name} (No profile picture)">
+            </div>
+            <div class="card-footer">
+                <p class="card-text">Email: ${data.seller.email}</p>
+            </div>
+        </div>
+    `;
+    
 }
 
 window.onload = () => {

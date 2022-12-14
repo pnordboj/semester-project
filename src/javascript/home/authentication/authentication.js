@@ -33,8 +33,8 @@ export const login = () => {
                     localStorage.setItem('user', JSON.stringify(data.name).replace(/"/g, ''));
                     localStorage.setItem('userimage', data.avatar);
                     localStorage.setItem('credits', data.credits);
-                    creditsHTML.innerHTML = `<label id="nav-credits" class="navbar-brand rounded border-1"
-                    >Credits: ${data.credits}</label>`
+                    creditsHTML.innerHTML = `<a id="nav-credits" class="nav-link"
+                    >Credits: ${localStorage.getItem('credits')}</a>`
                     setTimeout(function () { window.location.href = "/"; }, 2000);
                 } else {
                     html.innerHTML = `<div class="alert alert-danger" role="alert">${data.message}</div>`;
@@ -83,9 +83,6 @@ export const register = () => {
                     } else {
                         html.innerHTML = `<div class="alert alert-danger" role="alert">${data.message}</div>`;
                     }
-                })
-                .catch((error) => {
-                    console.log(error);
                 });
         } else {
             html.innerHTML = `<div class="alert alert-danger" role="alert">Invalid email</div>`;
@@ -101,21 +98,25 @@ export function isLoggedIn() {
 
 export function autoLogin() {
     if (isLoggedIn() === true) {
+        
         const navLogin = document.getElementById('nav-login');
         const navRegister = document.getElementById('nav-register');
         const navLogout = document.getElementById('nav-logout');
         const auctionButtons = document.getElementsByClassName('auction-buttons');
-        navLogin.innerHTML = `<a href="/profile/?user=${localStorage.getItem('user')}" class="nav-link" onclick="profilePage()">Welcome: ${localStorage.getItem('user')}</a>`;
+        const loggedAs = document.getElementById('logged-as');
+
+        loggedAs.innerHTML = `<a href="/profile/?user=${localStorage.getItem('user')}" class="nav-link">Logged in as: ${localStorage.getItem('user')}</a>`;
+        navLogin.style.display = 'none';
         navRegister.style.display = 'none';
         navLogout.style.display = 'block';
-        creditsHTML.innerHTML = `<label id="nav-credits" class="navbar-brand rounded border-1"
-        >Credits: ${localStorage.getItem('credits')}</label>`
+        creditsHTML.innerHTML = `<a id="nav-credits" class="nav-link"
+        >Credits: ${localStorage.getItem('credits')}</a>`
         auctionButtons.innerHTML = `
-        <button id="open-listing-btn" type="button" class="btn btn-primary">
+        <button id="open-listing-btn" type="button" class="btn btn-secondary">
             Create Auction
         </button>
-        <button type="button" class="btn btn-primary">My Auctions</button>
-        <a href="/profile/?user=${localStorage.getItem('user')}" class="btn btn-primary">My Profile</a>
+        <button type="button" class="btn btn-secondary">My Auctions</button>
+        <a href="/profile/?user=${localStorage.getItem('user')}" class="btn btn-secondary">My Profile</a>
         `;
     }
 }

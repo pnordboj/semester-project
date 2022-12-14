@@ -44,18 +44,31 @@ export function openListing() {
 const createBtn = document.getElementById('create-listing-btn');
 
 createBtn.onclick = () => {
-    const title = document.getElementById('create-listing')[0].value;
-    const description = document.getElementById('create-listing')[1].value;
-    const endsAt = document.getElementById('create-listing')[2].value;
-    const tags = document.getElementById('create-listing')[3].value;
-    const media = document.getElementById('create-listing')[4].value;
-    console.log(document.getElementById('create-listing'));
+    const title = document.getElementById('create-title').value;
+    const description = document.getElementById('create-description').value;
+    const endsAt = document.getElementById('create-date').value;
+    const endsAtISO = new Date(endsAt).toISOString();
+    const tags = document.getElementById('create-tags').value.split(',')
+    .map((tag) => tag.trim());
+    const media = document.getElementById('create-image').value;
+
+    const body = JSON.stringify({
+        title: title,
+        description: description,
+        endsAt: endsAtISO,
+        tags: tags,
+        media: media,
+    });
+
+    console.log(body);
+
     const options = {
         method: 'POST',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('access-token')}`,
+            'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ title, description, endsAt, tags, media }),
+        body: body,
     };
     console.log(options.body);
     fetch(url + '/auction/listings', options)

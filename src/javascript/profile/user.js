@@ -21,13 +21,14 @@ export async function getUser() {
         <div id="user-box" class="card-body">
             <div class="card" id="card-image"> 
                 <img id="user-image" src="${data.avatar}" class="card-img-top" alt="${data.name} (No profile picture)">
+                <button id="edit-image-btn" class="btn btn-secondary">Edit Image</button>
             </div>
             <div id="user-info">
                 <label id="username-label">Username:</label>
                 <div id="user-title-box">
                     <p class="card-title
                     ">${data.name}</p>
-                    <button id="edit-name-btn" class="btn btn-secondary">Edit</button>
+                    <button id="edit-name-btn" class="btn btn-secondary">Edit Username</button>
                 </div>
                 <hr id="whiteline">
                 <label id="user-email-label">Email:</label>

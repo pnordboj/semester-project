@@ -1,3 +1,7 @@
+#logged-as {
+  margin-left: 10%;
+}
+
 /* Section: Welcome Tab */
 
 .welcome-section {
@@ -35,7 +39,9 @@
 
 #register-container {
   display: none;
-  width: 30%;
+  width: 35%;
+  border: 1px solid rgb(220, 220, 220);
+  border-radius: 1%;
   margin: 10% auto;
 }
 
@@ -84,12 +90,19 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin: 5% auto;
+  margin-left: 5;
   gap: 5%;
 }
 
 #seller-list-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 5% auto;
+  margin-left: 10%;
+  gap: 5%;
 }
 
 #seller-container {
@@ -98,19 +111,15 @@
 }
 
 #seller-image {
-  width: 50%;
-}
-
-#listing-card {
-  width: 100%;
-}
-
-#image-container {
   width: 30%;
 }
 
-#listing-img {
-  width: 100%;
+#listing-card {
+  width: 70%;
+}
+
+#image-container {
+  width: 50%;
 }
 
 /* Section: Profile */
@@ -154,6 +163,14 @@
 
 #card-image {
   width: 40%;
+}
+
+#user-image {
+  margin: 0 auto;
+}
+
+#edit-image-btn {
+  margin: 1% auto;
 }
 
 #user-title-box {

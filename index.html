@@ -9,7 +9,7 @@
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-dark bg-dark mb-3">
+      <nav class="navbar bg-secondary mb-3">
         <div class="container-fluid gap-5 justify-content-center">
           <a class="navbar-brand" href="#">Bidder.io</a>
           <ul class="navbar-nav d-flex flex-row gap-4">
@@ -25,37 +25,19 @@
             <li class="nav-item">
               <a id="nav-about-btn" class="nav-link" href="#">About</a>
             </li>
-          </ul>
-          <form class="d-flex">
-            <input
-              id="searchbar"
-              class="form-control"
-              type="search"
-              placeholder="Search for auctions"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form>
-          <ul class="navbar-nav d-flex flex-row gap-4">
-            <li id="nav-login" class="nav-item">
-              <a id="nav-login-btn" class="nav-link" href="#">Login</a>
-            </li>
             <li id="nav-register" class="nav-item">
               <a class="nav-link" id="nav-register-btn" href="#"
                 >Create Account</a
               >
             </li>
+            <li id="nav-login" class="nav-item">
+              <a id="nav-login-btn" class="nav-link" href="#">Login</a>
+            </li>
             <li id="nav-logout" class="nav-item">
               <a class="nav-link" id="nav-logout-btn" href="#">Logout</a>
             </li>
-          </ul>
-          <ul>
             <li id="nav-credits" class="nav-item">
-              <label id="nav-credits" class="navbar-brand rounded border-1"
-                >Credits</label
-              >
+              <label id="nav-credits" class="rounded border-1">Credits</label>
             </li>
           </ul>
         </div>
@@ -64,14 +46,14 @@
 
     <main>
       <section id="username-section">
-        <label class="btn btn-outline-secondary" id="logged-as"
-          >Not logged inn</label
-        >
+        <label class="btn btn-outline-secondary" id="logged-as">
+          Not logged inn
+        </label>
       </section>
       <section class="welcome-section container-fluid" id="welcome-section">
+        <h1 class="card-title text-center mb-4">Welcome to Bidder.io</h1>
         <div class="card welcome-container">
           <div class="card-body">
-            <h1 class="card-title">Welcome to Bidder.io</h1>
             <p class="card-text">
               Bidder.io is a platform for buying and selling items.
             </p>
@@ -161,15 +143,15 @@
       <section id="auction-section">
         <h1 class="text-center">Auctions</h1>
         <div class="auction-buttons">
-          <button id="open-listing-btn" type="button" class="btn btn-primary">
+          <button id="open-listing-btn" type="button" class="btn btn-secondary">
             Create Auction
           </button>
-          <button type="button" class="btn btn-primary">My Auctions</button>
-          <button id="profile-btn" type="button" class="btn btn-primary">
+          <button type="button" class="btn btn-secondary">My Auctions</button>
+          <button id="profile-btn" type="button" class="btn btn-secondary">
             My Profile
           </button>
         </div>
-        <div class="card" id="auction-container">
+        <div id="auction-container">
           <div class="card-group" id="auctions"></div>
         </div>
       </section>
@@ -187,12 +169,14 @@
               <input
                 type="text"
                 class="form-control"
+                id="create-title"
                 placeholder="Title your auction!"
                 required
               />
               <input
                 type="text"
                 class="form-control"
+                id="create-description"
                 placeholder="Describe your auction!"
                 required
               />
@@ -200,6 +184,7 @@
                 type="datetime-local"
                 class="form-control"
                 name="date"
+                id="create-date"
                 placeholder="When does your auction end?"
                 required
               />
@@ -207,6 +192,7 @@
               <input
                 type="text"
                 class="form-control"
+                id="create-tags"
                 placeholder="Add tags for your auction"
                 required
               />
@@ -214,6 +200,7 @@
               <input
                 type="text"
                 class="form-control"
+                id="create-image"
                 placeholder="Add image URL for auction picture"
                 required
               />
@@ -237,7 +224,13 @@
       </section>
     </main>
 
-    <footer></footer>
+    <footer>
+      <label class="form-switch">
+        <input type="checkbox">
+        <i></i>
+        Toggle Dark Mode
+      </label>
+    </footer>
 
     <script src="src/javascript/main.js" type="module"></script>
   </body>
