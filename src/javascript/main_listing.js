@@ -21,12 +21,12 @@ export function autoLogin() {
         const navRegister = document.getElementById('nav-register');
         const navLogout = document.getElementById('nav-logout');
         const creditsHTML = document.getElementById('nav-credits');
-        loggedInAs.innerHTML = 'Welcome Back: ' + localStorage.getItem('user');
+        loggedInAs.innerHTML = `<a href="/profile/?user=${localStorage.getItem('user')}" class="nav-link">Logged in as: ${localStorage.getItem('user')}</a>`;
         navLogin.style.display = 'none';
         navRegister.style.display = 'none';
         navLogout.style.display = 'block';
-        creditsHTML.innerHTML = `<label id="nav-credits" class="rounded border-1"
-        >Credits: ${localStorage.getItem('credits')}</label>`
+        creditsHTML.innerHTML = `<a id="nav-credits" class="nav-link"
+        >Credits: ${localStorage.getItem('credits')}</a>`
     }
 }
 

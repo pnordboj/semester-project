@@ -68,15 +68,21 @@ navRegister.onclick = () => {
 welcomeRegister.onclick = () => {
     welcome.style.display = 'none';
     authorize.style.display = 'block';
-    register.style.display = 'block';
     login.style.display = 'none';
+    register.style.display = 'block';
+    auction.style.display = 'none';
+    profile.style.display = 'none';
+    create.style.display = 'none';
 }
 
 welcomeLogin.onclick = () => {
     welcome.style.display = 'none';
-    authorize.style.display = 'flex';
+    authorize.style.display = 'block';
+    login.style.display = 'block';
     register.style.display = 'none';
-    login.style.display = 'flex';
+    auction.style.display = 'none';
+    profile.style.display = 'none';
+    create.style.display = 'none';
 }
 
 welcomeGuest.onclick = () => {

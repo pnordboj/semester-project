@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "watch": "sass src/scss:build/css --watch & live-server",
+    "watch": "sass --watch src/scss:build/css & live-server",
     "build": "sass src/scss:build/css"
   },
   "author": "",
