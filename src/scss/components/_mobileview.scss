@@ -1,0 +1,10 @@
+// Mobile view
+
+
+@media only screen and (max-width: 480px) {
+    #authorize-container, #login-container, #register-container {
+      width: 90%;
+      margin: 5% auto;
+    }
+  }
+  

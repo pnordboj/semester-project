@@ -3,11 +3,13 @@ const urlParams = new URLSearchParams(queryString);
 const id = urlParams.get('id');
 
 const url = `https://api.noroff.dev/api/v1/auction/listings/${id}?_seller=true&_bids=true`;
-const html = document.getElementById('listing-container');
 const alert = document.getElementById('alert-container');
 const headers = {
     Authorization: 'Bearer ' + localStorage.getItem('access-token'),
+
 };
+
+let highestCurrentBid = 0;
 
 export async function getListing() {
     const response = await fetch(url, {
@@ -15,35 +17,29 @@ export async function getListing() {
     });
     const data = await response.json();
     console.log(data);
-    const listing = document.getElementById('listing-container');
+    let sortedBids = data.bids.sort((a, b) => b.amount - a.amount);
+    highestCurrentBid = sortedBids[0].amount;
+    console.log(sortedBids);
     const seller = document.getElementById('seller-container');
-    listing.innerHTML = '';
-    listing.innerHTML += `
-    <div id="listing-card">
-            <div class="card mb-4">
-            <img src="${data.media[0]}" id="listing-img" class="card-img-top" alt="${data.title}">
-                <div class="card-body">
-                    <h5 class="card-title">${data.title}</h5>
-                    <p class="card-text">${data.description}</p>
-                </div>
-                <div class="card-footer">
-                    <p class="card-text">Bids: ${data._count.bids}</p>
-                    <p class="card-text">Ends: ${data.endsAt}</p>
-                    <div class="btn-group">
-                        <form id="bid-form">
-                            <input type="number" name="bid" id="bid" placeholder="Bid Amount">
-                            <button id="bid-btn" class="btn btn-primary">Bid</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+    const listingBody = document.getElementById('listing-body');
+    listingBody.innerHTML = `
+        <img id="listing-image" src="${data.media[0]}" class="card-img-top" alt="${data.title}">
+        <h5 class="card-title">${data.title}</h5>
+        <p class="card-text">${data.description}</p>
+    `;
+
+    const footerInfo = document.getElementById('footer-info');
+    footerInfo.innerHTML = `    
+        <p class="card-text">Bids: ${data._count.bids}</p>
+        <p class="card-text">Highest bid: ${sortedBids[0].amount}</p>
+        <p class="card-text">Ends: ${data.endsAt}</p>
     `;
     seller.innerHTML = '';
     seller.innerHTML += `
         <div class="card mb-4">
-            <div class="card-body">
-                <p class="text-muted">Seller</p>
+            <div id="seller-box" class="card-body">
+                <p>Posted by</p>
                 <h3 class="card-title">${data.seller.name}</h3>
                 <img id="seller-image" src="${data.seller.avatar}" class="card-img-top" alt="${data.seller.name} (No profile picture)">
             </div>
@@ -59,36 +55,50 @@ window.onload = () => {
     getListing();
 }
 
-
 const bidBtn = document.getElementById('bid-btn');
+const bidUrl = `https://api.noroff.dev/api/v1/auction/listings/${id}/bids`;
 
 bidBtn.onclick = () => {
     const bid = document.getElementById('bid').value;
+    // Turn value of bid into a number
     const options = {
         method: 'POST',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('access-token')}`,
+            'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ bid }),
+        body: JSON.stringify({
+            amount: Number(bid),
+        }),
     };
     console.log(options.body);
-    if (bid > localStorage.getItem('credits')) {
-        fetch(url, options)
+    if (bid <= localStorage.getItem('credits')) {
+        fetch(bidUrl, options)
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
                 if (data.error) {
-                    html.innerHTML = `
+                    alert.innerHTML = `
                         <div class="alert alert-danger" role="alert">
                             ${data.error}
                         </div>
                     `;
-                } else {
-                    html.innerHTML = `
-                        <div class="alert alert-success" role="alert">
-                            Successfully bid ${data.amount} credits
+                } 
+                else if (highestCurrentBid > bid) {
+                    alert.innerHTML = `
+                        <div class="alert alert-danger" role="alert">
+                            Your bid must be higher than the highest bid!
                         </div>
                     `;
+                } else {
+                    alert.innerHTML = `
+                        <div class="alert alert-success" role="alert">
+                            Successfully bid ${bid} credits
+                        </div>
+                    `;
+                    const toalCredits = localStorage.getItem('credits') - bid;
+                    localStorage.setItem('credits', toalCredits);
+                    console.log(localStorage.getItem('credits'));
                 }
             }
             );

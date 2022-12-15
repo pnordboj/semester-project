@@ -40,9 +40,9 @@ export async function editImage() {
     const response = await fetch(url + '/media', {
         method: 'PUT',
         headers: headers,
-        body: { 
-            avatar: [newImg],
-        },
+        body: JSON.stringify({ 
+            avatar: newImg,
+        }),
     });
     const data = await response.json();
     console.log(data);
@@ -52,9 +52,7 @@ export async function editImage() {
                 Image updated!
             </div>
         `;
-        setTimeout(() => {
-            location.reload();
-        }, 1000);
+        getUser();
     } else {
         alert.innerHTML = `
             <div class="alert alert-danger" role="alert">
