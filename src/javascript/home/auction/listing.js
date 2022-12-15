@@ -41,7 +41,6 @@ filterSelect.addEventListener('change', async () => {
                         <p class="card-text">Bids: ${listing._count.bids}</p>
                         <p class="card-text">Ends: ${listing.endsAt}</p>
                         <div class="btn-group">
-                            <a href="#" class="btn btn-primary">Bid</a>
                             <a href="listing/?id=${listing.id}" class="btn btn-primary">View Post</a>
                         </div>
                     </div>
@@ -71,7 +70,6 @@ export async function auctionListings() {
                         <p class="card-text">Bids: ${listing._count.bids}</p>
                         <p class="card-text">Ends: ${listing.endsAt}</p>
                         <div class="btn-group">
-                            <a href="#" class="btn btn-primary">Bid</a>
                             <a href="listing/?id=${listing.id}" class="btn btn-primary">View Post</a>
                         </div>
                     </div>

@@ -1,7 +1,8 @@
 // SCSS file
-@use 'components/header';
-@use 'components/main';
-@use 'components/footer';
+@import 'components/header';
+@import 'components/main';
+@import 'components/footer';
+@import 'components/mediaquery';
 
 // Custom Variables for Bootstrap
 @import 'components/variables';
