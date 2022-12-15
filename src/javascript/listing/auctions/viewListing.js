@@ -17,8 +17,12 @@ export async function getListing() {
     });
     const data = await response.json();
     console.log(data);
-    let sortedBids = data.bids.sort((a, b) => b.amount - a.amount);
-    highestCurrentBid = sortedBids[0].amount;
+    let sortedBids = 0;
+    if (data._count.bids > 0) {
+        sortedBids = data.bids.sort((a, b) => b.amount - a.amount);
+        highestCurrentBid = sortedBids[0].amount;
+        sortedBids = sortedBids[0].amount;
+    }
     console.log(sortedBids);
     const seller = document.getElementById('seller-container');
 
@@ -32,7 +36,7 @@ export async function getListing() {
     const footerInfo = document.getElementById('footer-info');
     footerInfo.innerHTML = `    
         <p class="card-text">Bids: ${data._count.bids}</p>
-        <p class="card-text">Highest bid: ${sortedBids[0].amount}</p>
+        <p class="card-text">Highest bid: ${sortedBids}</p>
         <p class="card-text">Ends: ${data.endsAt}</p>
     `;
     seller.innerHTML = '';

@@ -297,6 +297,45 @@ footer {
   transform: translate3d(22px, 2px, 0);
 }
 
+@media only screen and (max-width: 480px) {
+  .welcome-container, #authorize-container, #login-container, #register-container, #create-container {
+    width: 95%;
+    margin: 5% auto;
+  }
+  .auction-card {
+    width: 90%;
+    margin: 5% auto;
+  }
+  #logged-as {
+    margin-left: 0%;
+    margin-bottom: 2%;
+  }
+  .auction-buttons {
+    flex-direction: row;
+    width: 100%;
+    margin: 5% auto;
+    gap: 10%;
+  }
+  #seller-list-container {
+    flex-direction: column-reverse;
+    margin-bottom: 10%;
+  }
+  #seller-container {
+    width: 50%;
+  }
+  #listing-container {
+    width: 95%;
+  }
+  #listing-container img {
+    width: 95%;
+  }
+  #user-box {
+    flex-direction: column;
+  }
+  #user-image-box {
+    width: 100%;
+  }
+}
 body {
   background-color: #000;
   color: #fff;
