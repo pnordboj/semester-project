@@ -1,3 +1,7 @@
+// Bootstrap File
+
+
+// Auction Javascript Files
 import './home/auction/index.js';
 import './home/authentication/index.js';
 import './profile/index.js';

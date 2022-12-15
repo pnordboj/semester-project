@@ -1,5 +1,5 @@
 import './profile/index.js';
-import { getUser, autoLogin, isLoggedIn } from './profile/index.js';
+import { getUser, autoLogin, isLoggedIn, editImage } from './profile/index.js';
 
 // Onload functions
 
@@ -9,3 +9,11 @@ window.onload = () => {
         autoLogin();
     }
 }
+
+// onclick functions
+
+const editImgBtn = document.getElementById('edit-image-btn');
+
+editImgBtn.onclick = () => {
+    editImage();
+};

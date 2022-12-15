@@ -37,8 +37,31 @@
     </header>
     <main>
       <section id="user-section">
+        <div id="user-container">
+          <div id="user-box" class="card-body">
+            <div id="user-image-box">
+              <div class="card mb-2" id="card-image"> 
+                <img id="user-image" src="#" class="card-img-top" alt="user image">
+              </div>
+              <div id="new-image-box">
+                <input type="text" id="new-image-url" placeholder="enter new image url">
+                <button id="edit-image-btn" class="btn btn-secondary">Edit Image</button>
+              </div>
+            </div>
+            <div id="user-info">
+                <label id="username-label">Username:</label>
+                <div id="user-title-box">
+
+                </div>
+                <hr id="whiteline">
+                <label id="user-email-label">Email:</label>
+                <div id="user-email-box">
+                </div>
+                <hr id="whiteline">
+                <p id="total-credits" class="card-text">Credits available: ${data.credits}</p>
+            </div>
+        </div>
         <div id="alert-container"></div>
-        <div id="user-container"></div>
       </section>
     </main>
     <footer></footer>

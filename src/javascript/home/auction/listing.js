@@ -3,7 +3,7 @@ const url = 'https://api.noroff.dev/api/v1';
 const html = document.getElementById('alert-container');
 
 export async function auctionListings() {
-    const response = await fetch(url + '/auction/listings');
+    const response = await fetch(url + '/auction/listings?sort=created&sortOrder=desc');
     const data = await response.json();
     console.log(data);
     const listings = document.getElementById('auctions');
@@ -57,7 +57,7 @@ createBtn.onclick = () => {
         description: description,
         endsAt: endsAtISO,
         tags: tags,
-        media: media,
+        media: [media],
     });
 
     console.log(body);
@@ -75,7 +75,9 @@ createBtn.onclick = () => {
         .then((response) => response.json())
         .then((data) => {
             console.log(data);
-            setTimeout(function () { auctionListings }, 2000);
+            setTimeout(() => {
+                window.location.href = 'listing/?id=' + data.id;
+            }, 1000);
         })
         .catch((error) => {
             console.log(error);

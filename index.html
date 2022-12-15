@@ -146,7 +146,11 @@
           <button id="open-listing-btn" type="button" class="btn btn-secondary">
             Create Auction
           </button>
-          <button type="button" class="btn btn-secondary">My Auctions</button>
+          <select id="filter">
+            <option value="">All</option>
+            <option value="open">Open</option>
+            <option value="closed">Closed</option>
+          </select>
           <button id="profile-btn" type="button" class="btn btn-secondary">
             My Profile
           </button>
@@ -231,7 +235,6 @@
         Toggle Dark Mode
       </label>
     </footer>
-
     <script src="src/javascript/main.js" type="module"></script>
   </body>
 </html>
