@@ -146,11 +146,15 @@
           <button id="open-listing-btn" type="button" class="btn btn-secondary">
             Create Auction
           </button>
-          <select id="filter">
-            <option value="">All</option>
-            <option value="open">Open</option>
-            <option value="closed">Closed</option>
-          </select>
+          <div id="filter-box">
+            <label for="filter">Sort By:</label>
+            <select id="filter">
+              <option value="created-desc">New to Old</option>
+              <option value="created-asc">Old to New</option>
+              <option value="title-a-z">A - Z</option>
+              <option value="title-z-a">Z - A</option>
+            </select>
+          </div>
           <button id="profile-btn" type="button" class="btn btn-secondary">
             My Profile
           </button>
