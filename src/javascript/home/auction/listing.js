@@ -2,8 +2,57 @@ const url = 'https://api.noroff.dev/api/v1';
 
 const html = document.getElementById('alert-container');
 
+let sortUrl = '/auction/listings?sort=created&sortOrder=desc';
+
+
+const filterSelect = document.getElementById('filter');
+filterSelect.addEventListener('change', async () => {
+    console.log(filterSelect.value);
+    switch (filterSelect.value) {
+        case 'created-desc':
+            sortUrl = '/auction/listings?sort=created&sortOrder=desc';
+            break;
+        case 'created-asc':
+            sortUrl = '/auction/listings?sort=created&sortOrder=asc';
+            break;
+        case 'title-a-z':
+            sortUrl = '/auction/listings?sort=title&sortOrder=asc';
+            break;
+        case 'title-z-a':
+            sortUrl = '/auction/listings?sort=title&sortOrder=desc';
+            break;
+        }
+    const response = await fetch(url + sortUrl);
+    const data = await response.json();
+    console.log(data);
+    const listings = document.getElementById('auctions');
+    listings.innerHTML = '';
+    data.forEach((listing) => {
+        listings.innerHTML += `
+            <div class="auction-card">
+                <div class="card mb-4">
+                    <img href="listing/?id=${listing.id}" src="${listing.media[0]}" class="card-img-top auction-img" alt="${listing.title}">
+                    <div class="card-body">
+                        <h5 class="card-title
+                        ${listing.status === 'sold' ? 'text-success' : ''}">${listing.title}</h5>
+                        <p class="card-text">${listing.description}</p>
+                    </div>
+                    <div class="card-footer">
+                        <p class="card-text">Bids: ${listing._count.bids}</p>
+                        <p class="card-text">Ends: ${listing.endsAt}</p>
+                        <div class="btn-group">
+                            <a href="#" class="btn btn-primary">Bid</a>
+                            <a href="listing/?id=${listing.id}" class="btn btn-primary">View Post</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+});
+
 export async function auctionListings() {
-    const response = await fetch(url + '/auction/listings?sort=created&sortOrder=desc');
+    const response = await fetch(url + sortUrl);
     const data = await response.json();
     console.log(data);
     const listings = document.getElementById('auctions');
