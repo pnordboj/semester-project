@@ -161,16 +161,34 @@
   width: 90%;
 }
 
+#user-image-box {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
+
 #card-image {
-  width: 40%;
+  width: 100%;
 }
 
 #user-image {
   margin: 0 auto;
 }
 
+#new-image-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1%;
+}
+
+#new-image-url {
+  width: 70%;
+}
+
 #edit-image-btn {
-  margin: 1% auto;
+  width: 30%;
 }
 
 #user-title-box {
