@@ -49,39 +49,14 @@
           >Not logged inn</label
         >
       </section>
-      <section class="mt-4" id="listing-section">
+      <section class="mt-2" id="listing-section">
         <div id="seller-list-container">
-          <div id="listing-container">
-            <div id="listing-card">
-              <div class="card mb-4">
-                <div class="card-body">
-                  <h5 class="card-title">${data.title}</h5>
-                  <p class="card-text">${data.description}</p>
-                </div>
-                <div class="card-footer">
-                  <p class="card-text">Bids: ${data._count.bids}</p>
-                  <p class="card-text">Ends: ${data.endsAt}</p>
-                  <div class="btn-group">
-                    <form id="bid-form">
-                      <input
-                        type="number"
-                        name="bid"
-                        id="bid"
-                        placeholder="Bid Amount"
-                      />
-                      <button id="bid-btn" class="btn btn-primary">Bid</button>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
           <div id="seller-container">
             <div class="card mb-4">
               <div class="card-body">
                 <img
                   id="seller-image"
-                  src="${data.seller.avatar}"
+                  src=""
                   class="card-img-top"
                   alt="${data.seller.name} (No profile picture)"
                 />
@@ -92,9 +67,29 @@
               </div>
             </div>
           </div>
+          <div id="listing-container">
+            <div id="listing-card">
+              <div class="card mb-4">
+                <div id="listing-body" class="card-body">
+                </div>
+                <div class="card-footer">
+                  <div id="footer-info">
+                  </div>
+                  <div>
+                      <input
+                        type="number"
+                        name="bid"
+                        id="bid"
+                        placeholder="Bid Amount"
+                      />
+                    <button type="submit" id="bid-btn" class="btn btn-primary">Bid</button>
+                    <div class="mt-2" id="alert-container"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div id="image-container"></div>
-        <div id="alert-container"></div>
       </section>
     </main>
     <footer></footer>

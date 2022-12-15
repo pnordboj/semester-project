@@ -93,41 +93,36 @@
 
 /* Single Listing */
 
-#listing-section {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin: 5% auto;
-  margin-left: 5;
-  gap: 5%;
-}
-
 #seller-list-container {
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: 5% auto;
-  margin-left: 10%;
-  gap: 5%;
+  margin: 1% auto;
 }
 
 #seller-container {
+  width: 10%;
+}
+
+#listing-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+
+}
+
+#seller-box {
   width: 100%;
-  margin-top: 5%;
 }
 
 #seller-image {
-  width: 30%;
+  width: 100%;
 }
 
 #listing-card {
   width: 70%;
-}
-
-#image-container {
-  width: 50%;
 }
 
 /* Section: Profile */
