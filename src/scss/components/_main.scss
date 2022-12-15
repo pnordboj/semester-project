@@ -216,3 +216,14 @@
 #username-label, #user-email-label {
   font-size: x-small;
 }
+
+// Profile listings
+
+#profile-listing {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5%;
+  flex-wrap: wrap;
+}
