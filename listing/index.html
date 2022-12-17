@@ -27,6 +27,14 @@
             <li class="nav-item">
               <a id="nav-about-btn" class="nav-link" href="#">About</a>
             </li>
+            <li id="nav-login" class="nav-item">
+              <a id="nav-login-btn" class="nav-link" href="#">Login</a>
+            </li>
+            <li id="nav-register" class="nav-item">
+              <a class="nav-link" id="nav-register-btn" href="#"
+                >Create Account</a
+              >
+            </li>
             <li id="nav-logout" class="nav-item">
               <a class="nav-link" id="nav-logout-btn" href="#">Logout</a>
             </li>
@@ -38,34 +46,51 @@
       </nav>
     </header>
     <main>
-      <section id="user-section">
-        <div id="user-container">
-          <div id="user-box" class="card-body">
-            <div id="user-image-box">
-              <div class="card mb-2" id="card-image"> 
-                <img id="user-image" src="#" class="card-img-top" alt="user image">
+      <section class="mt-4" id="username-section">
+        <label class="btn btn-outline-secondary" id="logged-as"
+          >Not logged inn</label
+        >
+      </section>
+      <section class="mt-2" id="listing-section">
+        <div id="seller-list-container">
+          <div id="seller-container">
+            <div class="card mb-4">
+              <div class="card-body">
+                <img
+                  id="seller-image"
+                  src=""
+                  class="card-img-top"
+                  alt="${data.seller.name} (No profile picture)"
+                />
+                <p class="card-title">${data.seller.name}</p>
               </div>
-              <div id="new-image-box">
-                <input type="text" id="new-image-url" placeholder="enter new image url">
-                <button id="edit-image-btn" class="btn btn-secondary">Edit Image</button>
+              <div class="card-footer">
+                <p class="card-text">Email: ${data.seller.email}</p>
               </div>
             </div>
-            <div id="user-info">
-                <label id="username-label">Username:</label>
-                <div id="user-title-box">
-
+          </div>
+          <div id="listing-container">
+            <div id="listing-card">
+              <div class="card mb-4">
+                <div id="listing-body" class="card-body">
                 </div>
-                <hr id="whiteline">
-                <label id="user-email-label">Email:</label>
-                <div id="user-email-box">
+                <div class="card-footer">
+                  <div id="footer-info">
+                  </div>
+                  <div>
+                      <input
+                        type="number"
+                        name="bid"
+                        id="bid"
+                        placeholder="Bid Amount"
+                      />
+                    <button type="submit" id="bid-btn" class="btn btn-primary">Bid</button>
+                    <div class="mt-2" id="alert-container"></div>
+                  </div>
                 </div>
-                <hr id="whiteline">
-                <p id="total-credits" class="card-text">Credits available: ${data.credits}</p>
+              </div>
             </div>
-        </div>
-        <div id="alert-container"></div>
-        <div id="profile-listing" class="mt-4">
-
+          </div>
         </div>
       </section>
     </main><footer>
@@ -78,6 +103,6 @@
         Toggle Dark Mode
       </label>
     </footer>
-    <script src="../src/javascript/main_profile.js" type="module"></script>
+    <script src="../src/javascript/main_listing.js" type="module"></script>
   </body>
 </html>

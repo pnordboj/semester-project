@@ -1,0 +1,144 @@
+// Mobile view
+
+
+@media only screen and (max-width: 480px) {
+  .welcome-container, #authorize-container, #login-container, #register-container, #create-container {
+      width: 95%;
+      margin: 5% auto;
+    }
+
+    .auction-card {
+      width: 90%;
+      margin: 5% auto;
+    }
+
+    #logged-as {
+      margin-left: 0%;
+      margin-bottom: 2%;
+    }
+
+    .auction-buttons {
+      flex-direction: row;
+      width: 100%;
+      margin: 5% auto;
+      gap: 10%;
+    }
+
+    // Listing Page
+
+    #seller-list-container {
+      flex-direction: column-reverse;
+      margin-bottom: 10%;
+    }
+
+    #seller-container {
+      width: 50%;
+    }
+
+    #listing-container {
+      width: 95%;
+    }
+
+    #listing-container img {
+      width: 95%;
+    }
+
+    // Profile Page
+
+    #user-box {
+      flex-direction: column;
+    }
+
+    #user-image-box {
+      width: 100%;
+    }
+
+}
+  
+@media (min-width: 481px) and (max-width: 768px) {
+  .welcome-container, #authorize-container, #login-container, #register-container, #create-container {
+    width: 95%;
+    margin: 5% auto;
+  }
+
+  .auction-card {
+    width: 90%;
+    margin: 5% auto;
+  }
+
+  #logged-as {
+    margin-left: 0%;
+    margin-bottom: 2%;
+  }
+
+  .auction-buttons {
+    flex-direction: row;
+    width: 100%;
+    margin: 5% auto;
+    gap: 10%;
+  }
+
+  // Listing Page
+
+  #seller-list-container {
+    flex-direction: column-reverse;
+    margin-bottom: 10%;
+  }
+
+  #seller-container {
+    width: 50%;
+  }
+
+  #listing-container {
+    width: 95%;
+  }
+
+  #listing-container img {
+    width: 95%;
+  }
+
+  // Profile Page
+
+  #user-box {
+    flex-direction: column;
+  }
+
+  #user-image-box {
+    width: 100%;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .welcome-container{
+    width: 60%;
+    margin: 5% auto;
+  }
+
+  #authorize-container, #login-container, #register-container, #create-container {
+    width: 90%;
+    margin: 5% auto;
+  }
+  // Listing Page
+  
+  #seller-list-container {
+    margin-bottom: 10%;
+  }
+
+  #seller-container {
+    width: 30%;
+  }
+
+  #listing-container {
+    width: 50%;
+  }
+
+  #listing-container img {
+    width: 100%;
+  }
+
+  // Profile Page
+
+  #user-image-box {
+    width: 100%;
+  }
+}

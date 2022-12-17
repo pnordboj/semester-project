@@ -1,3 +1,10 @@
+#logged-as {
+  margin-left: 10%;
+}
+
+#nav-credits {
+  display: none;
+}
 
 /* Section: Welcome Tab */
 
@@ -36,7 +43,9 @@
 
 #register-container {
   display: none;
-  width: 30%;
+  width: 35%;
+  border: 1px solid rgb(220, 220, 220);
+  border-radius: 1%;
   margin: 10% auto;
 }
 
@@ -53,6 +62,14 @@
   margin: 3% auto;
   margin-bottom: 3%;
   gap: 5%;
+}
+
+#filter-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1%;
 }
 
 .auction-container {
@@ -74,6 +91,44 @@
   width: 100%;
 }
 
+.auction-img {
+  cursor: pointer;
+}
+
+/* Single Listing */
+
+#seller-list-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1% auto;
+}
+
+#seller-container {
+  width: 10%;
+}
+
+#listing-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+
+}
+
+#seller-box {
+  width: 100%;
+}
+
+#seller-image {
+  width: 100%;
+}
+
+#listing-card {
+  width: 70%;
+}
+
 /* Section: Profile */
 
 #profile-section {
@@ -85,3 +140,89 @@
 #create-section {
   display: none;
 } 
+
+#create-container {
+  width: 50%;
+  margin: 2% auto;
+}
+
+.form-control {
+  margin-bottom: 5%;
+}
+
+/* Listing page */
+
+/* Profile Page */
+
+#user-container {
+  width: 80%;
+  margin: 5% auto;
+}
+
+#user-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 3%;
+  width: 90%;
+}
+
+#user-image-box {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
+
+#card-image {
+  width: 100%;
+}
+
+#user-image {
+  margin: 0 auto;
+}
+
+#new-image-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1%;
+}
+
+#new-image-url {
+  width: 70%;
+}
+
+#edit-image-btn {
+  width: 30%;
+}
+
+#user-title-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5%;
+}
+
+#user-email-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5%;
+}
+
+#username-label, #user-email-label {
+  font-size: x-small;
+}
+
+// Profile listings
+
+#profile-listing {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5%;
+  flex-wrap: wrap;
+}
