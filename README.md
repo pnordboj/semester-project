@@ -1,4 +1,4 @@
-# Semester Project 2022
+# Semester Project 2
 
 This project is a web application that allows users to bid on auctions and view the current highest bids.
 
