@@ -1,7 +1,15 @@
 @charset "UTF-8";
 /* Nav Buttons */
+.nav-link {
+  cursor: pointer;
+}
+
 #nav-logout {
   display: none;
+}
+
+a:link {
+  text-decoration: none;
 }
 
 #logged-as {

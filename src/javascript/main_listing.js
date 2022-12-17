@@ -25,7 +25,8 @@ export function autoLogin() {
         navLogin.style.display = 'none';
         navRegister.style.display = 'none';
         navLogout.style.display = 'block';
-        creditsHTML.innerHTML = `<a id="nav-credits" class="nav-link"
+        creditsHTML.style.display = 'block';
+        creditsHTML.innerHTML = `<a id="nav-label-credits" class="nav-link"
         >Credits: ${localStorage.getItem('credits')}</a>`
     }
 }
