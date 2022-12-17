@@ -15,7 +15,7 @@ window.onload = () => {
         htmlSection.innerHTML = `
         <div class="alert alert-danger" role="alert">
             You are not logged in!
-            Plesae log in to view your profile.
+            Please log in to view your profile.
         </div>
         `;
         setTimeout(() => {
