@@ -11,30 +11,29 @@
     <header>
       <nav class="navbar bg-secondary mb-3">
         <div class="container-fluid gap-5 justify-content-center">
-          <a class="navbar-brand" href="#">Bidder.io</a>
+          <a class="navbar-brand">Bidder.io</a>
           <ul class="navbar-nav d-flex flex-row gap-4">
             <li class="nav-item">
               <a
                 id="nav-auction-btn"
                 class="nav-link active"
                 aria-current="page"
-                href="#"
                 >Auctions</a
               >
             </li>
             <li class="nav-item">
-              <a id="nav-about-btn" class="nav-link" href="#">About</a>
+              <a id="nav-about-btn" class="nav-link" >About</a>
             </li>
             <li id="nav-register" class="nav-item">
-              <a class="nav-link" id="nav-register-btn" href="#"
+              <a class="nav-link" id="nav-register-btn"
                 >Create Account</a
               >
             </li>
             <li id="nav-login" class="nav-item">
-              <a id="nav-login-btn" class="nav-link" href="#">Login</a>
+              <a id="nav-login-btn" class="nav-link">Login</a>
             </li>
             <li id="nav-logout" class="nav-item">
-              <a class="nav-link" id="nav-logout-btn" href="#">Logout</a>
+              <a class="nav-link" id="nav-logout-btn" >Logout</a>
             </li>
             <li id="nav-credits" class="nav-item">
               <label id="nav-credits" class="rounded border-1">Credits</label>
@@ -89,12 +88,14 @@
                   placeholder="username@stud.noroff.no"
                   required
                 />
+                <div id="login-alert-email"></div>
                 <input
                   type="password"
                   class="form-control"
                   placeholder="Enter your password!"
                   required
                 />
+                <div id="login-alert-password"></div>
               </div>
               <div class="card-footer">
                 <button id="login-btn" class="btn btn-primary">Login</button>
@@ -106,29 +107,37 @@
               <div class="card-body">
                 <h2 class="card-title">Create your account</h2>
                 <input
+                  id="create-username"
                   type="text"
                   class="form-control"
                   placeholder="Enter your name!"
                   required
                 />
+                <div id="register-alert-username"></div>
                 <input
+                  id="create-email"
                   type="email"
                   class="form-control"
                   placeholder="username@stud.noroff.no"
                   required
                 />
+                <div id="register-alert-email"></div>
                 <input
+                  id="create-url"
                   type="text"
                   class="form-control"
                   placeholder="Add image URL for profile picture"
                   required
                 />
+                <div id="register-alert-url"></div>
                 <input
+                  id="create-password"
                   type="password"
                   class="form-control"
                   placeholder="Enter your password!"
                   required
                 />
+                <div id="register-alert-password"></div>
               </div>
               <div class="card-footer">
                 <button id="register-btn" class="btn btn-primary">
@@ -136,6 +145,7 @@
                 </button>
               </div>
             </form>
+            <div id="register-alert"></div>
           </div>
         </div>
       </section>
