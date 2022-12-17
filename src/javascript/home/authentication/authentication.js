@@ -8,42 +8,90 @@ const creditsHTML = document.getElementById('nav-credits');
 const logoutBtn = document.getElementById('nav-logout-btn');
 
 export const login = () => {
+    try {
+        localStorage.setItem('guest', 'false');
 
-    localStorage.setItem('guest', 'false');
+        const email = document.getElementById('login')[0].value;
+        const password = document.getElementById('login')[1].value;
 
-    const email = document.getElementById('login')[0].value;
-    const password = document.getElementById('login')[1].value;
+        const options = {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify({
+                email: email,
+                password: password,
+            }),
+        };
 
-    const options = {
-        method: 'POST',
-        headers: headers,
-        body: JSON.stringify({
-            email: email,
-            password: password,
-        }),
-    };
+        if (validateLogin(email, password)) {
+            fetch(url + '/auction/auth/login', options)
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.accessToken) {
+                        localStorage.setItem('access-token', data.accessToken);
+                        localStorage.setItem('user', JSON.stringify(data.name).replace(/"/g, ''));
+                        localStorage.setItem('userimage', data.avatar);
+                        localStorage.setItem('credits', data.credits);
+                        creditsHTML.innerHTML = `<a id="nav-credits" class="nav-link"
+                        >Credits: ${localStorage.getItem('credits')}</a>`
+                        setTimeout(function () { window.location.href = "/"; }, 1000);
+                    } else {
+                        html.innerHTML = `<div class="alert alert-danger" role="alert">${data.message}</div>`;
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
 
-    if (checkEmail(email)) {
-        fetch(url + '/auction/auth/login', options)
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.accessToken) {
-                    localStorage.setItem('access-token', data.accessToken);
-                    localStorage.setItem('user', JSON.stringify(data.name).replace(/"/g, ''));
-                    localStorage.setItem('userimage', data.avatar);
-                    localStorage.setItem('credits', data.credits);
-                    creditsHTML.innerHTML = `<a id="nav-credits" class="nav-link"
-                    >Credits: ${localStorage.getItem('credits')}</a>`
-                    setTimeout(function () { window.location.href = "/"; }, 3000);
-                } else {
-                    html.innerHTML = `<div class="alert alert-danger" role="alert">${data.message}</div>`;
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+function checkLoginEmail(email) {
+    const re = /\S+@\S+\.\S+/;
+    const alertEmail = document.getElementById('login-alert-email');
+    if (re.test(email)) {
+        if (email.indexOf("@stud.noroff.no", email.length - "@stud.noroff.no".length) !== -1) {
+            if  (alertEmail.innerHTML !== '') {
+                alertEmail.style.display = 'none';
+            }
+            return true;
+        } else {
+            alertEmail.innerHTML = `<div class="alert alert-danger" role="alert">Invalid email, email needs to be @stud.noroff.no</div>`;
+            return false;
+        }
     } else {
-        html.innerHTML = `<div class="alert alert-danger" role="alert">Invalid email</div>`;
+        alertEmail.innerHTML = `<div class="alert alert-danger" role="alert">Invalid email</div>`;
+        return false;
+    }
+}
+
+function checkLoginPassword(password) {
+    const alertPassword = document.getElementById('login-alert-password');
+    if (password.length < 8) {
+        alertPassword.innerHTML = `<div class="alert alert-danger" role="alert">Password must be at least 8 characters</div>`;
+        return false;
+    } else {
+        if (alertPassword.innerHTML !== '') {
+            alertPassword.style.display = 'none';
+        }
+        return true;
+    }
+}
+
+function validateLogin(email, password) {
+
+    // Checks if the input is valid
+    const check1 = checkLoginEmail(email);
+    const check2 = checkLoginPassword(password);
+
+    if (check1 && check2) {
+        return true;
+    } else if (!check1) {
+        return false;
+    } else if (!check2) {
+        return false;
     }
 }
 
@@ -65,28 +113,111 @@ export const register = () => {
                 password: password,
             }),
         }
-
-        if (checkEmail(email)) {
+        
+        const alertHtml = document.getElementById('register-alert');
+        if (validateRegister(username, email, avatar, password)) {
             fetch(url + '/auction/auth/register', options)
                 .then((response) => response.json())
                 .then((data) => {
-                    if (data.accessToken) {
-
+                    if (data.id) {
                         localStorage.setItem('access-token', data.accessToken);
-                        // I had to inclue the replace method to remove the quotes from the name
-                        // otherwise it would not work with the profile page
                         localStorage.setItem('user', JSON.stringify(data.name).replace(/"/g, ''));
                         localStorage.setItem('userimage', data.avatar);
-                        setTimeout(function () { html.innerHTML = `<div class="alert alert-success" role="alert">User successfully created! Please login!</div>` }, 2000);
+                        localStorage.setItem('credits', data.credits);
+                        setTimeout(function () { html.innerHTML = `<div class="alert alert-success" role="alert">User successfully created!</div>`
+                        window.location.reload }, 2000);
                     } else {
-                        html.innerHTML = `<div class="alert alert-danger" role="alert">${data.message}</div>`;
+                        alertHtml.innerHTML = `<div class="alert alert-danger" role="alert">${data.errors[0].message}</div>`;
                     }
+                })
+                .catch((error) => {
+                    console.log(error);
+                    alertHtml.innerHTML = `<div class="alert alert-danger" role="alert">${error}</div>`;
                 });
-        } else {
-            html.innerHTML = `<div class="alert alert-danger" role="alert">Invalid email</div>`;
         }
     } catch (error) {
         console.log(error);
+        alertHtml.innerHTML = `<div class="alert alert-danger" role="alert">${error}</div>`;
+    }
+}
+
+function checkUsername(username) {
+    const alertUsername = document.getElementById('register-alert-username');
+    if (username.length < 3) {
+        alertUsername.innerHTML = `<div class="alert alert-danger" role="alert">Username must be at least 3 characters</div>`;
+        return false;
+    } else {
+        if (alertUsername.innerHTML !== '') {
+            alertUsername.style.display = 'none';
+        }
+        return true;
+    }
+}
+
+function checkEmail(email) {
+    const re = /\S+@\S+\.\S+/;
+    const alertEmail = document.getElementById('register-alert-email');
+    if (re.test(email)) {
+        if (email.indexOf("@stud.noroff.no", email.length - "@stud.noroff.no".length) !== -1) {
+            if  (alertEmail.innerHTML !== '') {
+                alertEmail.style.display = 'none';
+            }
+            return true;
+        } else {
+            alertEmail.innerHTML = `<div class="alert alert-danger" role="alert">Invalid email, email needs to be @stud.noroff.no</div>`;
+            return false;
+        }
+    } else {
+        alertEmail.innerHTML = `<div class="alert alert-danger" role="alert">Invalid email</div>`;
+        return false;
+    }
+}
+
+function checkUrl(avatar) {
+    const re = /^(ftp|http|https):\/\/[^ "]+$/;
+    const alertUrl= document.getElementById('register-alert-url');
+    if (re.test(avatar)) {
+        if (alertUrl.innerHTML !== '') {
+            alertUrl.style.display = 'none';
+        }
+        return true;
+    } else {
+        alertUrl.innerHTML = `<div class="alert alert-danger" role="alert">Invalid URL</div>`;
+        return false;
+    }
+}
+
+function checkPassword(password) {
+    const alertPassword = document.getElementById('register-alert-password');
+    if (password.length < 8) {
+        alertPassword.innerHTML = `<div class="alert alert-danger" role="alert">Password must be at least 8 characters</div>`;
+        return false;
+    } else {
+        if (alertPassword.innerHTML !== '') {
+            alertPassword.style.display = 'none';
+        }
+        return true;
+    }
+}
+
+function validateRegister(username, email, avatar, password) {
+
+    // Checks if the input is valid
+    const check1 = checkUsername(username);
+    const check2 = checkEmail(email);
+    const check3 = checkUrl(avatar);
+    const check4 = checkPassword(password);
+
+    if (check1 && check2 && check3 && check4) {
+        return true;
+    } else if (!check1) {
+        return false;
+    } else if (!check2) {
+        return false;
+    } else if (!check3) {
+        return false;
+    } else if (!check4) {
+         return false;
     }
 }
 
@@ -138,15 +269,6 @@ logoutBtn.onclick = function logout() {
     navRegister.style.display = 'block';
     navLogout.style.display = 'none';
     window.location.href = "/";
-}
-
-function checkEmail(email) {
-    const re = /\S+@\S+\.\S+/;
-    if (re.test(email)) {
-        if (email.indexOf("@stud.noroff.no", email.length - "@stud.noroff.no".length) !== -1) {
-            return true;
-        }
-    }
 }
 
 const loginBtn = document.getElementById('login-btn');

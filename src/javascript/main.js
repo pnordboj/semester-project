@@ -9,6 +9,7 @@ import { auctionListings } from './home/auction/index.js';
 // Run on Load Functions
 
 window.onload = () => {
+    history.replaceState(null, null, '?#');
     const welcomePage = document.getElementById('welcome-section');
     const auctionPage = document.getElementById('auction-section');
     if (isLoggedIn() === true) {

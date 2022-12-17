@@ -13,7 +13,14 @@ window.onload = () => {
 // onclick functions
 
 const editImgBtn = document.getElementById('edit-image-btn');
+const logoutBtn = document.getElementById('nav-logout-btn');
 
 editImgBtn.onclick = () => {
     editImage();
 };
+
+logoutBtn.onclick = () => {
+    localStorage.clear();
+    localStorage.setItem('guest', 'true');
+    window.location.href = '/';
+}

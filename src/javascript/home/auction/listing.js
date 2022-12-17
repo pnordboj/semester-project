@@ -37,8 +37,7 @@ filterSelect.addEventListener('change', async () => {
                         <div class="card mb-4">
                             <img href="listing/?id=${listing.id}" src="${listing.media[0]}" class="card-img-top auction-img" alt="${listing.title}">
                             <div class="card-body">
-                                <h5 class="card-title
-                                ${listing.status === 'sold' ? 'text-success' : ''}">${listing.title}</h5>
+                                <h5 class="card-title">${listing.title}</h5>
                                 <p class="card-text">${listing.description}</p>
                             </div>
                             <div class="card-footer">
@@ -58,8 +57,7 @@ filterSelect.addEventListener('change', async () => {
                         <div class="card mb-4">
                             <img href="listing/?id=${listing.id}" src="${listing.media[0]}" class="card-img-top auction-img" alt="${listing.title}">
                             <div class="card-body">
-                                <h5 class="card-title
-                                ${listing.status === 'sold' ? 'text-success' : ''}">${listing.title}</h5>
+                                <h5 class="card-title">${listing.title}</h5>
                                 <p class="card-text">${listing.description}</p>
                             </div>
                             <div class="card-footer">
@@ -94,8 +92,7 @@ export async function auctionListings() {
                         <div class="card mb-4">
                             <img href="listing/?id=${listing.id}" src="${listing.media[0]}" class="card-img-top auction-img" alt="${listing.title}">
                             <div class="card-body">
-                                <h5 class="card-title
-                                ${listing.status === 'sold' ? 'text-success' : ''}">${listing.title}</h5>
+                                <h5 class="card-title">${listing.title}</h5>
                                 <p class="card-text">${listing.description}</p>
                             </div>
                             <div class="card-footer">
@@ -115,8 +112,7 @@ export async function auctionListings() {
                         <div class="card mb-4">
                             <img href="listing/?id=${listing.id}" src="${listing.media[0]}" class="card-img-top auction-img" alt="${listing.title}">
                             <div class="card-body">
-                                <h5 class="card-title
-                                ${listing.status === 'sold' ? 'text-success' : ''}">${listing.title}</h5>
+                                <h5 class="card-title">${listing.title}</h5>
                                 <p class="card-text">${listing.description}</p>
                             </div>
                             <div class="card-footer">

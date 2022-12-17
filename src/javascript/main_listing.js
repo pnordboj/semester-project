@@ -33,17 +33,7 @@ export function autoLogin() {
 const logoutBtn = document.getElementById('nav-logout-btn');
 
 logoutBtn.onclick = function logout() {
-    const navLogin = document.getElementById('nav-login');
-    const loggedInAs = document.getElementById('logged-as');
-    const navRegister = document.getElementById('nav-register');
-    const navLogout = document.getElementById('nav-logout');
-    loggedInAs.innerHTML = '';
-    localStorage.removeItem('access-token');
-    localStorage.removeItem('username');
-    localStorage.removeItem('userimage');
-    localStorage.removeItem('credits');
-    navLogin.innerHTML = `<a id="nav-login-btn" class="nav-link" href="#">Login</a>`;
-    navRegister.style.display = 'block';
-    navLogout.style.display = 'none';
-    window.location.href = "/";
+    localStorage.clear();
+    localStorage.setItem('guest', 'true');
+    window.location.href = '/';
 }
