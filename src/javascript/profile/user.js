@@ -4,6 +4,7 @@ const id = urlParams.get('user');
 
 const url = `https://api.noroff.dev/api/v1/auction/profiles/${id}`;
 const alert = document.getElementById('alert-container');
+const htmlSection = document.getElementById('user-section'); 
 
 const headers = {
     Authorization: 'Bearer ' + localStorage.getItem('access-token'),
@@ -62,7 +63,7 @@ export async function editImage() {
 
 let sortUrl = '/listings?sort=created&sortOrder=desc';
 
-async function profileListing() {
+export async function profileListing() {
     const response = await fetch(url + sortUrl, {
         headers: headers,
     });
@@ -86,7 +87,3 @@ async function profileListing() {
         `;
     });
 }
-
-window.onload = () => {
-    profileListing();
-};

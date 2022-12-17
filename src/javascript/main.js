@@ -27,3 +27,9 @@ window.onload = () => {
 }
 
 // Button Click Functions
+const welcomeGuest = document.getElementById('welcome-guest-button');
+
+welcomeGuest.onclick = () => {
+    localStorage.setItem('guest', 'true');
+    window.location.href = '/';
+}

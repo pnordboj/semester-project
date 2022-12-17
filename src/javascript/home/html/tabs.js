@@ -10,7 +10,6 @@ const navRegister = document.getElementById('nav-register-btn');
 const welcome = document.getElementById('welcome-section');
 const welcomeRegister = document.getElementById('welcome-create-button');
 const welcomeLogin = document.getElementById('welcome-login-button');
-const welcomeGuest = document.getElementById('welcome-guest-button');
 
 /* Authroize Tab */
 const authorize = document.getElementById('authorize-container');
@@ -55,16 +54,6 @@ navLogin.onclick = () => {
     create.style.display = 'none';
 }
 
-function guestLoginBtn() {
-    welcome.style.display = 'none';
-    authorize.style.display = 'block';
-    login.style.display = 'block';
-    register.style.display = 'none';
-    auction.style.display = 'none';
-    profile.style.display = 'none';
-    create.style.display = 'none';
-}
-
 navRegister.onclick = () => {
     welcome.style.display = 'none';
     authorize.style.display = 'block';
@@ -95,10 +84,4 @@ welcomeLogin.onclick = () => {
     auction.style.display = 'none';
     profile.style.display = 'none';
     create.style.display = 'none';
-}
-
-welcomeGuest.onclick = () => {
-    welcome.style.display = 'none';
-    auction.style.display = 'block';
-    localStorage.setItem('guest', 'true');
 }
