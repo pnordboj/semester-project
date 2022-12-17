@@ -2,6 +2,7 @@
 
 
 @media only screen and (max-width: 480px) {
+
   .welcome-container, #authorize-container, #login-container, #register-container, #create-container {
       width: 95%;
       margin: 5% auto;
@@ -56,6 +57,7 @@
 }
   
 @media (min-width: 481px) and (max-width: 768px) {
+  
   .welcome-container, #authorize-container, #login-container, #register-container, #create-container {
     width: 95%;
     margin: 5% auto;

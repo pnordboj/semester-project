@@ -35,11 +35,13 @@ filterSelect.addEventListener('change', async () => {
                 listings.innerHTML += `
                     <div class="auction-card">
                         <div class="card mb-4">
-                            <img href="listing/?id=${listing.id}" src="${listing.media[0]}" class="card-img-top auction-img" alt="${listing.title}">
-                            <div class="card-body">
+                            <a href="listing/?id=${listing.id}">
+                            <img src="${listing.media[0]}" class="card-img-top auction-img" alt="${listing.title}">
+                            </a>
+                            <a class="card-body" href="listing/?id=${listing.id}">
                                 <h5 class="card-title">${listing.title}</h5>
                                 <p class="card-text">${listing.description}</p>
-                            </div>
+                            </a>
                             <div class="card-footer">
                                 <p class="card-text">Bids: ${listing._count.bids}</p>
                                 <p class="card-text">Ends: ${listing.endsAt}</p>
@@ -55,7 +57,7 @@ filterSelect.addEventListener('change', async () => {
                 listings.innerHTML += `
                     <div class="auction-card">
                         <div class="card mb-4">
-                            <img href="listing/?id=${listing.id}" src="${listing.media[0]}" class="card-img-top auction-img" alt="${listing.title}">
+                            <img src="${listing.media[0]}" class="card-img-top auction-img" alt="${listing.title}">
                             <div class="card-body">
                                 <h5 class="card-title">${listing.title}</h5>
                                 <p class="card-text">${listing.description}</p>
@@ -90,11 +92,13 @@ export async function auctionListings() {
                 listings.innerHTML += `
                     <div class="auction-card">
                         <div class="card mb-4">
-                            <img href="listing/?id=${listing.id}" src="${listing.media[0]}" class="card-img-top auction-img" alt="${listing.title}">
-                            <div class="card-body">
-                                <h5 class="card-title">${listing.title}</h5>
-                                <p class="card-text">${listing.description}</p>
-                            </div>
+                        <a href="listing/?id=${listing.id}">
+                        <img src="${listing.media[0]}" class="card-img-top auction-img" alt="${listing.title}">
+                        </a>
+                        <a class="card-body" href="listing/?id=${listing.id}">
+                            <h5 class="card-title">${listing.title}</h5>
+                            <p class="card-text">${listing.description}</p>
+                        </a>
                             <div class="card-footer">
                                 <p class="card-text">Bids: ${listing._count.bids}</p>
                                 <p class="card-text">Ends: ${listing.endsAt}</p>
@@ -110,11 +114,13 @@ export async function auctionListings() {
                 listings.innerHTML += `
                     <div class="auction-card">
                         <div class="card mb-4">
-                            <img href="listing/?id=${listing.id}" src="${listing.media[0]}" class="card-img-top auction-img" alt="${listing.title}">
-                            <div class="card-body">
-                                <h5 class="card-title">${listing.title}</h5>
-                                <p class="card-text">${listing.description}</p>
-                            </div>
+                        <a href="listing/?id=${listing.id}">
+                        <img src="${listing.media[0]}" class="card-img-top auction-img" alt="${listing.title}">
+                        </a>
+                        <a class="card-body" href="listing/?id=${listing.id}">
+                            <h5 class="card-title">${listing.title}</h5>
+                            <p class="card-text">${listing.description}</p>
+                        </a>
                             <div class="card-footer">
                                 <p class="card-text">Bids: ${listing._count.bids}</p>
                                 <p class="card-text">Ends: ${listing.endsAt}</p>
