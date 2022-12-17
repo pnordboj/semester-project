@@ -1,3 +1,4 @@
+
 /* Navbar */
 
 const navAuction = document.getElementById('nav-auction-btn');
@@ -18,6 +19,7 @@ const register = document.getElementById('register-container');
 
 /* Auction Tab */
 const auction = document.getElementById('auction-section');
+const guesLoginBtn = document.getElementById('listing-login-btn');
 
 /* Profile Tab */
 const profile = document.getElementById('profile-section');
@@ -44,6 +46,16 @@ navAbout.onclick = () => {
 }
 
 navLogin.onclick = () => {
+    welcome.style.display = 'none';
+    authorize.style.display = 'block';
+    login.style.display = 'block';
+    register.style.display = 'none';
+    auction.style.display = 'none';
+    profile.style.display = 'none';
+    create.style.display = 'none';
+}
+
+function guestLoginBtn() {
     welcome.style.display = 'none';
     authorize.style.display = 'block';
     login.style.display = 'block';
@@ -88,4 +100,5 @@ welcomeLogin.onclick = () => {
 welcomeGuest.onclick = () => {
     welcome.style.display = 'none';
     auction.style.display = 'block';
+    localStorage.setItem('guest', 'true');
 }

@@ -1,13 +1,16 @@
 const url = 'https://api.noroff.dev/api/v1';
 
-const html = document.getElementById('alert-container');
-
 let sortUrl = '/auction/listings?sort=created&sortOrder=desc';
 
 
 const filterSelect = document.getElementById('filter');
 filterSelect.addEventListener('change', async () => {
-    console.log(filterSelect.value);
+    let loggedInAs = '';
+    if (localStorage.getItem('access-token')) {
+        loggedInAs = 'loggedIn';
+    } else if (localStorage.getItem('guest') === 'true') {
+        loggedInAs = 'guest';
+    };
     switch (filterSelect.value) {
         case 'created-desc':
             sortUrl = '/auction/listings?sort=created&sortOrder=desc';
@@ -24,58 +27,108 @@ filterSelect.addEventListener('change', async () => {
         }
     const response = await fetch(url + sortUrl);
     const data = await response.json();
-    console.log(data);
     const listings = document.getElementById('auctions');
     listings.innerHTML = '';
     data.forEach((listing) => {
-        listings.innerHTML += `
-            <div class="auction-card">
-                <div class="card mb-4">
-                    <img href="listing/?id=${listing.id}" src="${listing.media[0]}" class="card-img-top auction-img" alt="${listing.title}">
-                    <div class="card-body">
-                        <h5 class="card-title
-                        ${listing.status === 'sold' ? 'text-success' : ''}">${listing.title}</h5>
-                        <p class="card-text">${listing.description}</p>
-                    </div>
-                    <div class="card-footer">
-                        <p class="card-text">Bids: ${listing._count.bids}</p>
-                        <p class="card-text">Ends: ${listing.endsAt}</p>
-                        <div class="btn-group">
-                            <a href="listing/?id=${listing.id}" class="btn btn-primary">View Post</a>
+        switch (loggedInAs) {
+            case 'loggedIn':
+                listings.innerHTML += `
+                    <div class="auction-card">
+                        <div class="card mb-4">
+                            <img href="listing/?id=${listing.id}" src="${listing.media[0]}" class="card-img-top auction-img" alt="${listing.title}">
+                            <div class="card-body">
+                                <h5 class="card-title
+                                ${listing.status === 'sold' ? 'text-success' : ''}">${listing.title}</h5>
+                                <p class="card-text">${listing.description}</p>
+                            </div>
+                            <div class="card-footer">
+                                <p class="card-text">Bids: ${listing._count.bids}</p>
+                                <p class="card-text">Ends: ${listing.endsAt}</p>
+                                <div id="view-list-btn" class="btn-group">
+                                    <a href="listing/?id=${listing.id}" class="btn btn-primary">View Post</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        `;
+                `;
+            break;
+            case 'guest':
+                listings.innerHTML += `
+                    <div class="auction-card">
+                        <div class="card mb-4">
+                            <img href="listing/?id=${listing.id}" src="${listing.media[0]}" class="card-img-top auction-img" alt="${listing.title}">
+                            <div class="card-body">
+                                <h5 class="card-title
+                                ${listing.status === 'sold' ? 'text-success' : ''}">${listing.title}</h5>
+                                <p class="card-text">${listing.description}</p>
+                            </div>
+                            <div class="card-footer">
+                                <p class="card-text">Bids: ${listing._count.bids}</p>
+                                <p class="card-text">Ends: ${listing.endsAt}</p>
+                                <label>Please login to view and bid</label>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            break;
+        }
     });
 });
 
 export async function auctionListings() {
+    let loggedInAs = '';
+    if (localStorage.getItem('access-token')) {
+        loggedInAs = 'loggedIn';
+    } else if (localStorage.getItem('guest') === 'true') {
+        loggedInAs = 'guest';
+    };
     const response = await fetch(url + sortUrl);
     const data = await response.json();
-    console.log(data);
     const listings = document.getElementById('auctions');
     listings.innerHTML = '';
     data.forEach((listing) => {
-        listings.innerHTML += `
-            <div class="auction-card">
-                <div class="card mb-4">
-                    <img href="listing/?id=${listing.id}" src="${listing.media[0]}" class="card-img-top auction-img" alt="${listing.title}">
-                    <div class="card-body">
-                        <h5 class="card-title
-                        ${listing.status === 'sold' ? 'text-success' : ''}">${listing.title}</h5>
-                        <p class="card-text">${listing.description}</p>
-                    </div>
-                    <div class="card-footer">
-                        <p class="card-text">Bids: ${listing._count.bids}</p>
-                        <p class="card-text">Ends: ${listing.endsAt}</p>
-                        <div class="btn-group">
-                            <a href="listing/?id=${listing.id}" class="btn btn-primary">View Post</a>
+        switch (loggedInAs) {
+            case 'loggedIn':
+                listings.innerHTML += `
+                    <div class="auction-card">
+                        <div class="card mb-4">
+                            <img href="listing/?id=${listing.id}" src="${listing.media[0]}" class="card-img-top auction-img" alt="${listing.title}">
+                            <div class="card-body">
+                                <h5 class="card-title
+                                ${listing.status === 'sold' ? 'text-success' : ''}">${listing.title}</h5>
+                                <p class="card-text">${listing.description}</p>
+                            </div>
+                            <div class="card-footer">
+                                <p class="card-text">Bids: ${listing._count.bids}</p>
+                                <p class="card-text">Ends: ${listing.endsAt}</p>
+                                <div id="view-list-btn" class="btn-group">
+                                    <a href="listing/?id=${listing.id}" class="btn btn-primary">View Post</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        `;
+                `;
+            break;
+            case 'guest':
+                listings.innerHTML += `
+                    <div class="auction-card">
+                        <div class="card mb-4">
+                            <img href="listing/?id=${listing.id}" src="${listing.media[0]}" class="card-img-top auction-img" alt="${listing.title}">
+                            <div class="card-body">
+                                <h5 class="card-title
+                                ${listing.status === 'sold' ? 'text-success' : ''}">${listing.title}</h5>
+                                <p class="card-text">${listing.description}</p>
+                            </div>
+                            <div class="card-footer">
+                                <p class="card-text">Bids: ${listing._count.bids}</p>
+                                <p class="card-text">Ends: ${listing.endsAt}</p>
+                                <label>Please login to view and bid</label>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            break;
+        }
     });
 }
 
@@ -107,8 +160,6 @@ createBtn.onclick = () => {
         media: [media],
     });
 
-    console.log(body);
-
     const options = {
         method: 'POST',
         headers: {
@@ -117,11 +168,9 @@ createBtn.onclick = () => {
         },
         body: body,
     };
-    console.log(options.body);
     fetch(url + '/auction/listings', options)
         .then((response) => response.json())
         .then((data) => {
-            console.log(data);
             setTimeout(() => {
                 window.location.href = 'listing/?id=' + data.id;
             }, 1000);

@@ -15,7 +15,6 @@ export async function getUser() {
         headers: headers,
     });
     const data = await response.json();
-    console.log(data);
     const cardImage = document.getElementById('card-image');
     const userName = document.getElementById('user-title-box');
     const userEmail = document.getElementById('user-email-box');
@@ -45,8 +44,7 @@ export async function editImage() {
         }),
     });
     const data = await response.json();
-    console.log(data);
-    if (response.status === 200) {
+    if (data.status === 200) {
         alert.innerHTML = `
             <div class="alert alert-success" role="alert">
                 Image updated!
@@ -69,7 +67,6 @@ async function profileListing() {
         headers: headers,
     });
     const data = await response.json();
-    console.log(data);
     const listings = document.getElementById('profile-listing');
     listings.innerHTML = '';
     data.forEach((listing) => {
@@ -90,4 +87,6 @@ async function profileListing() {
     });
 }
 
-profileListing();
+window.onload = () => {
+    profileListing();
+};

@@ -16,14 +16,12 @@ export async function getListing() {
         headers: headers,
     });
     const data = await response.json();
-    console.log(data);
     let sortedBids = 0;
     if (data._count.bids > 0) {
         sortedBids = data.bids.sort((a, b) => b.amount - a.amount);
         highestCurrentBid = sortedBids[0].amount;
         sortedBids = sortedBids[0].amount;
     }
-    console.log(sortedBids);
     const seller = document.getElementById('seller-container');
 
     const listingBody = document.getElementById('listing-body');
@@ -75,12 +73,10 @@ bidBtn.onclick = () => {
             amount: Number(bid),
         }),
     };
-    console.log(options.body);
     if (bid <= localStorage.getItem('credits')) {
         fetch(bidUrl, options)
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
                 if (data.error) {
                     alert.innerHTML = `
                         <div class="alert alert-danger" role="alert">
@@ -102,7 +98,6 @@ bidBtn.onclick = () => {
                     `;
                     const toalCredits = localStorage.getItem('credits') - bid;
                     localStorage.setItem('credits', toalCredits);
-                    console.log(localStorage.getItem('credits'));
                 }
             }
             );

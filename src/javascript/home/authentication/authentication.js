@@ -7,9 +7,9 @@ const html = document.getElementById('alert-container');
 const creditsHTML = document.getElementById('nav-credits');
 const logoutBtn = document.getElementById('nav-logout-btn');
 
-const userImage = [];
-
 export const login = () => {
+
+    localStorage.setItem('guest', 'false');
 
     const email = document.getElementById('login')[0].value;
     const password = document.getElementById('login')[1].value;
@@ -27,7 +27,6 @@ export const login = () => {
         fetch(url + '/auction/auth/login', options)
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
                 if (data.accessToken) {
                     localStorage.setItem('access-token', data.accessToken);
                     localStorage.setItem('user', JSON.stringify(data.name).replace(/"/g, ''));
@@ -35,7 +34,7 @@ export const login = () => {
                     localStorage.setItem('credits', data.credits);
                     creditsHTML.innerHTML = `<a id="nav-credits" class="nav-link"
                     >Credits: ${localStorage.getItem('credits')}</a>`
-                    setTimeout(function () { window.location.href = "/"; }, 2000);
+                    setTimeout(function () { window.location.href = "/"; }, 3000);
                 } else {
                     html.innerHTML = `<div class="alert alert-danger" role="alert">${data.message}</div>`;
                 }
@@ -71,7 +70,6 @@ export const register = () => {
             fetch(url + '/auction/auth/register', options)
                 .then((response) => response.json())
                 .then((data) => {
-                    console.log(data);
                     if (data.accessToken) {
 
                         localStorage.setItem('access-token', data.accessToken);
@@ -96,12 +94,22 @@ export function isLoggedIn() {
     return Boolean(localStorage.getItem('access-token'));
 }
 
+export function guestLogin() {
+    if (localStorage.getItem('guest') === 'true') {
+        const auctionButtons = document.getElementsByClassName('auction-buttons');
+        const loggedAs = document.getElementById('logged-as');
+        loggedAs.innerHTML = `<a href="/profile/?user=${localStorage.getItem('user')}" class="nav-link">Logged in as: Guest</a>`;
+        auctionButtons.innerHTML = ``;
+    }
+}
+
 export function autoLogin() {
     if (isLoggedIn() === true) {
-        
+        localStorage.setItem('guest', 'false');
         const navLogin = document.getElementById('nav-login');
         const navRegister = document.getElementById('nav-register');
         const navLogout = document.getElementById('nav-logout');
+        const creditsHTML = document.getElementById('nav-credits');
         const auctionButtons = document.getElementsByClassName('auction-buttons');
         const loggedAs = document.getElementById('logged-as');
 
@@ -109,8 +117,7 @@ export function autoLogin() {
         navLogin.style.display = 'none';
         navRegister.style.display = 'none';
         navLogout.style.display = 'block';
-        creditsHTML.innerHTML = `<a id="nav-credits" class="nav-link"
-        >Credits: ${localStorage.getItem('credits')}</a>`
+        creditsHTML.style.display = 'block';
         auctionButtons.innerHTML = `
         <button id="open-listing-btn" type="button" class="btn btn-secondary">
             Create Auction
@@ -122,13 +129,11 @@ export function autoLogin() {
 }
 
 logoutBtn.onclick = function logout() {
+    localStorage.clear();
+    localStorage.setItem('guest', 'true')
     const navLogin = document.getElementById('nav-login');
     const navRegister = document.getElementById('nav-register');
     const navLogout = document.getElementById('nav-logout');
-    localStorage.removeItem('access-token');
-    localStorage.removeItem('user');
-    localStorage.removeItem('userimage');
-    localStorage.removeItem('credits');
     navLogin.innerHTML = `<a id="nav-login-btn" class="nav-link" href="#">Login</a>`;
     navRegister.style.display = 'block';
     navLogout.style.display = 'none';
@@ -139,7 +144,6 @@ function checkEmail(email) {
     const re = /\S+@\S+\.\S+/;
     if (re.test(email)) {
         if (email.indexOf("@stud.noroff.no", email.length - "@stud.noroff.no".length) !== -1) {
-            console.log("Valid email");
             return true;
         }
     }
