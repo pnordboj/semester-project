@@ -1,12 +1,26 @@
 import './profile/index.js';
-import { getUser, autoLogin, isLoggedIn, editImage } from './profile/index.js';
+import { getUser, autoLogin, isLoggedIn, editImage, profileListing } from './profile/index.js';
+
 
 // Onload functions
+
+const htmlSection = document.getElementById('user-section');
 
 window.onload = () => {
     if (isLoggedIn() === true) {
         getUser();
         autoLogin();
+        profileListing();
+    } else {
+        htmlSection.innerHTML = `
+        <div class="alert alert-danger" role="alert">
+            You are not logged in!
+            Plesae log in to view your profile.
+        </div>
+        `;
+        setTimeout(() => {
+        window.location.href = '/';
+        }, 3000);
     }
 }
 
